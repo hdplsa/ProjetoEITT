@@ -35,6 +35,16 @@ double *InfraRedSensor::getAllAverageVoltage(int Ntests){
   return this->usensor;
 }
 
+int InfraRedSensor::getORSensor(){
+  int n,flag;
+  for(n=0,flag=0;n<this->NSensor;n++){
+    if(this->usensor[n] > this->REF){
+      flag = 1;
+    }
+  }
+  return flag;
+}
+
 InfraRedSensor::~InfraRedSensor(){
   
 }

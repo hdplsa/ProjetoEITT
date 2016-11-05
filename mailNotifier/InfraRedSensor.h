@@ -10,12 +10,15 @@ class InfraRedSensor{
   int sensorPin[3];
   //Tensões de entrada dos sensores
   double usensor[3];
+  //Valor minimo de referência no sensor para haver carta
+  double REF;
 
 public:
   InfraRedSensor(int NSensor);
   double getSensorVoltage(int sensorPin);
   double *getAllVoltage();
   double *getAllAverageVoltage(int Ntests);
+  int getORSensor();
   ~InfraRedSensor();
   
 };

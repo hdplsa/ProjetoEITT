@@ -13,8 +13,25 @@ Notifier::Notifier(NotificationType type){
  *  sensores precisa de detectar a existência de cartas.
  */
 int Notifier::testMailBox(){
+  int flag;
   //Acende todos os LEDs
   this->ifLED->turnAllON();
+  //Recebe OR das leituras dos sensores
+  flag = this->ifSensor->getORSensor();
+  //Apaga todos os LEDs
+  this->ifLED->turnAllOFF();
+  //Iniciar processo de notificação
+  if(flag){
+    //Verificação do tipo de processo de notificação
+    switch(this->type){
+      case PiscaLED:
+
+        break;
+      case GSM:
+
+        break;
+    }
+  }
 }
 
 Notifier::~Notifier(){
