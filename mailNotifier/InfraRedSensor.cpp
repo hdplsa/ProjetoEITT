@@ -16,11 +16,23 @@ double InfraRedSensor::getSensorVoltage(int sensorPin){
   return u;
 }
 
-void InfraRedSensor::getAllVoltage(){
+double *InfraRedSensor::getAllVoltage(){
   int n;
   for(n=0;n<NSensor;n++){
     this->usensor[n] = getSensorVoltage(sensorPin[n]);
   }
+  return this->usensor;
+}
+
+double *InfraRedSensor::getAllAverageVoltage(int Ntests){
+  int n,k,av;
+  for(n=0;n<NSensor;n++){
+    for(k=1,av=0;k<=Ntests;k++){
+       av = av + getSensorVoltage(sensorPin[n]);
+    }
+    this->usensor[n] = (double)av/(double)Ntests;
+  }
+  return this->usensor;
 }
 
 InfraRedSensor::~InfraRedSensor(){

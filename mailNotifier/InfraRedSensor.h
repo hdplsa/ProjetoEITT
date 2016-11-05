@@ -14,7 +14,8 @@ class InfraRedSensor{
 public:
   InfraRedSensor(int NSensor);
   double getSensorVoltage(int sensorPin);
-  void getAllVoltage();
+  double *getAllVoltage();
+  double *getAllAverageVoltage(int Ntests);
   ~InfraRedSensor();
   
 };
