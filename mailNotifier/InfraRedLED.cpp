@@ -3,8 +3,12 @@
 
 InfraRedLED::InfraRedLED(int NLED){
   int n;
-  
   this->NLED = NLED;
+  //Inicializa pinos dos LEDs
+  this->LEDPin[0] = 7;
+  this->LEDPin[1] = 6;
+  this->LEDPin[2] = 5;
+  //Modo output nos pinos dos LEDs
   for(n=0; n<NLED; n++){
     pinMode(this->LEDPin[n], OUTPUT);
   }

@@ -4,7 +4,9 @@
 #include "Arduino.h"
 
 class InfraRedLED{
+  //Numero de LEDs infravermelhos
   int NLED;
+  //Pins dos LEDs
   int LEDPin[3];
 
 public:
