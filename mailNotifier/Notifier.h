@@ -2,11 +2,13 @@
 #define NOTIFIER_H_INCLUDED
 
 
+enum NotificationType {PiscaLED, GSM};
+
 class Notifier{
-  int type;
+  NotificationType type;
 
 public:
-  Notifier(int type);
+  Notifier(NotificationType type);
   ~Notifier();
 };
 

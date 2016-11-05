@@ -1,6 +1,6 @@
 #include "Notifier.h"
 
-Notifier::Notifier(int type){
+Notifier::Notifier(NotificationType type){
   this->type = type;
 }
 
