@@ -2,9 +2,13 @@
 #define LEDNOTIFIER_H_INCLUDED
 
 class LEDNotifier{
-
+  //Pino do LED
+  int LEDPin;
+  
 public:
-  LEDNotifier();
+  LEDNotifier(int LEDPin);
+  void turnON();
+  void turnOFF();
   ~LEDNotifier();
   
 };

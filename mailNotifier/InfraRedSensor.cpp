@@ -22,6 +22,13 @@ void InfraRedSensor::turnAllSensorON(){
   }
 }
 
+void InfraRedSensor::turnAllSensorOFF(){
+  int n;
+  for(n=0;n<this->NSensor;n++){
+    digitalWrite(this->sensorPowerPin[n], LOW);
+  }
+}
+
 double InfraRedSensor::getSensorVoltage(int sensorPin){
   int sr;
   double u;
