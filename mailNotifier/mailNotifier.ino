@@ -8,14 +8,14 @@ InfraRedLED *ifled = new InfraRedLED(1);
 InfraRedSensor *ifSensor = new InfraRedSensor(1);
 Notifier *Not = new Notifier(PiscaLED);
 
-bool flag = 0;
+volatile bool flag = 0;
 
 void initTimer1(){
   cli();
   TCCR1A = 0;// clear register
   TCCR1B = 0;// clear register
   TCNT1 = 0;//reset counter
-  OCR1A = 8; //must be <65536
+  OCR1A = 7126; //must be <65536
   // = (16*10^6) / (1*1024) – 1
   TCCR1B |= (1 << WGM12); //CTC On
   // Set prescaler for 1024
