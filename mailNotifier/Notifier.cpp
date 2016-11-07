@@ -5,6 +5,21 @@ Notifier::Notifier(NotificationType type){
   //Alloca os controladores do hardware
   this->ifLED = new InfraRedLED(3);
   this->ifSensor = new InfraRedSensor(3);
+  //Aloca Notificador(es)
+  switch(this->type){
+    case PiscaLED:
+      piscaLED = new LEDNotifier();
+      gsm = 0;
+      break;
+    case GSM:
+      piscaLED = 0;
+      gsm = new GSMNotifier();
+      break;
+    case BOTH:
+      piscaLED = new LEDNotifier();
+      gsm = new GSMNotifier();
+      break;
+  }
 }
 
 /* Verifica se existe correio na caixa

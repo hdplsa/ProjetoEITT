@@ -4,8 +4,10 @@
 #include "Arduino.h"
 #include "InfraRedLED.h"
 #include "InfraRedSensor.h"
+#include "LEDNOtifier.h"
+#include "GSMNotifier.h"
 
-enum NotificationType {PiscaLED, GSM};
+enum NotificationType {PiscaLED, GSM, BOTH};
 
 class Notifier{
   //Tipo de notificador, definido logo à partida
@@ -13,6 +15,9 @@ class Notifier{
   //Ponteiros para LEDs e Sensores de forma a obter dados
   InfraRedLED *ifLED;
   InfraRedSensor *ifSensor;
+  //Notificadores
+  LEDNotifier *piscaLED;
+  GSMNotifier *gsm;
 
 public:
   Notifier(NotificationType type);
