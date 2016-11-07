@@ -2,6 +2,7 @@
 
 LEDNotifier::LEDNotifier(int LEDPin){
   this->LEDPin = LEDPin;
+  pinMode(this->LEDPin[n], OUTPUT);
 }
 
 void LEDNotifier::turnON(){

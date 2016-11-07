@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include "InfraRedLED.h"
 #include "InfraRedSensor.h"
-#include "LEDNOtifier.h"
+#include "LEDNotifier.h"
 #include "GSMNotifier.h"
 
 enum NotificationType {PiscaLED, GSM, BOTH};
@@ -22,6 +22,7 @@ class Notifier{
 public:
   Notifier(NotificationType type);
   int testMailBox();
+  void Notify();
   ~Notifier();
 };
 

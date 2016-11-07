@@ -1,14 +1,16 @@
 #include "Notifier.h"
 
+const int LEDPin = 2;
+
 Notifier::Notifier(NotificationType type){
   this->type = type;
   //Alloca os controladores do hardware
-  this->ifLED = new InfraRedLED(3);
-  this->ifSensor = new InfraRedSensor(3);
+  //this->ifLED = new InfraRedLED(1);
+  //this->ifSensor = new InfraRedSensor(1);
   //Aloca Notificador(es)
   switch(this->type){
     case PiscaLED:
-      piscaLED = new LEDNotifier();
+      piscaLED = new LEDNotifier(LEDPin);
       gsm = 0;
       break;
     case GSM:
@@ -16,7 +18,7 @@ Notifier::Notifier(NotificationType type){
       gsm = new GSMNotifier();
       break;
     case BOTH:
-      piscaLED = new LEDNotifier();
+      piscaLED = new LEDNotifier(LEDPin);
       gsm = new GSMNotifier();
       break;
   }
@@ -40,13 +42,26 @@ int Notifier::testMailBox(){
     //Verificação do tipo de processo de notificação
     switch(this->type){
       case PiscaLED:
-
+        
         break;
       case GSM:
 
         break;
     }
   }
+}
+
+void Notifier::Notify(){
+
+  switch(this->type){
+    case PiscaLED:
+      this->piscaLED->turnON();
+      Serial.println("3\n");
+    break;
+    default:
+    break;
+  }
+  
 }
 
 Notifier::~Notifier(){
