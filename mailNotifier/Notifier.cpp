@@ -56,12 +56,20 @@ void Notifier::Notify(){
   switch(this->type){
     case PiscaLED:
       this->piscaLED->turnON();
-      Serial.println("3\n");
+      delay(500);
+      this->piscaLED->turnOFF();
+    break;
+    case GSM:
+      if(!this->notified){
+        // this->GSMNotifier();
+      }
+    break;
+    case BOTH:
     break;
     default:
     break;
   }
-  
+  this->notified = true; 
 }
 
 Notifier::~Notifier(){
