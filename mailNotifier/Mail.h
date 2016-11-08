@@ -8,6 +8,9 @@
 
 class Mail{
 
+  // Variavel de debug diz caso se fazem os serial.print ou não
+  int DEBUG;
+
   // Obtejos do emissor de IV, sensor de IV e notificação
   InfraRedLED *ifled;
   InfraRedSensor *ifSensor;
@@ -17,10 +20,10 @@ class Mail{
   double calibVoltage;
   
   public:
-    Mail(NotificationType type);
+    Mail(NotificationType type, int DEBUG);
     ~Mail();
     double check_distance();    
-    void chech_mail();
+    void check_mail();
 
   private:
     void initial_calibration();

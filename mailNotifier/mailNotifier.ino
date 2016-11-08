@@ -3,17 +3,17 @@
 #include "InfraRedLED.h"
 #include "InfraRedSensor.h"
 #include "Notifier.h"
+#include "Mail.h"
 
-InfraRedLED *ifled = new InfraRedLED(1);
-InfraRedSensor *ifSensor = new InfraRedSensor(1);
-Notifier *Not = new Notifier(PiscaLED);
+const int DEBUG = 1;
+Mail *mail;
 
 void setup() {
   // put your setup code here, to run once:
   
   Serial.begin(9600);
-  ifled->turnAllON();
-  ifSensor->turnAllSensorON();
+
+  mail = new Mail(PiscaLED, DEBUG);
 
   setup_sleep();
   
@@ -25,17 +25,12 @@ void loop() {
   // Liga o ADC (gasta energia)
   ADCSRA |= (1 << 7);
   
-  double u = ifSensor->getSensorVoltage(0);
-  Serial.print("u = ");
-  Serial.println(u,4);
-  delay(500);
+  mail->check_mail();
 
   //Desliga o ADC
   ADCSRA &= ~(1 << 7);
 
   sleeps(1);
-
-  Not->Notify();
 }
 
 void setup_sleep(){
