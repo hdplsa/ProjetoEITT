@@ -14,7 +14,7 @@ class InfraRedSensor{
   int sensorPowerPin[3];
   //Valor minimo de referência no sensor para haver carta
   double REF;
-
+  
 public:
   InfraRedSensor(int NSensor);
   void turnAllSensorON();

@@ -16,6 +16,10 @@ void setup() {
   mail = new Mail(PiscaLED, DEBUG);
 
   setup_sleep();
+
+  if(DEBUG){
+    Serial.println("Ready");
+  }
   
 }
 
@@ -27,10 +31,15 @@ void loop() {
   
   mail->check_mail();
 
+  if(DEBUG){
+    delay(100);
+  }
+
   //Desliga o ADC
   ADCSRA &= ~(1 << 7);
 
   sleeps(1);
+ 
 }
 
 void setup_sleep(){

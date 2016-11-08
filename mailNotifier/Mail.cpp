@@ -19,17 +19,24 @@ double Mail::check_distance(){
 
   double medida;
   
-  // Liga o emissor de IV
+  // Liga o emissor de IV e o recetor de IV
   ifled->turnAllON();
+  ifSensor->turnAllSensorON();
   // Espera um pouco para o TBJ ter tempo
-  delay(100);
+  delay(500);
 
   // Obtem a tensão no emissor do TBJ
   medida = ifSensor->getSensorVoltage(0);
+  
   if(DEBUG){
     Serial.print("u = ");
     Serial.println(medida,4);
   }
+  
+  // Apaga os leds e o sensor
+  ifled->turnAllOFF();
+  ifSensor->turnAllSensorOFF();
+  
   return medida;
 }
 
