@@ -18,12 +18,18 @@ class Mail{
 
   // Variáveis provenientes da calibação
   double calibVoltage;
+
+  // Flag que informa se há correio ou não
+  volatile bool new_mail = false;
   
   public:
     Mail(NotificationType type, int DEBUG);
     ~Mail();
     double check_distance();    
     void check_mail();
+    bool get_flag();
+    void set_flag(bool flag);
+    void Notify();
 
   private:
     void initial_calibration();

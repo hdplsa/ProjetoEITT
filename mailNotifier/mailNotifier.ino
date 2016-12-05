@@ -5,8 +5,19 @@
 #include "Notifier.h"
 #include "Mail.h"
 
+/* PINs dos LED e Sensor
+ * LED            -> 2
+ * botão          -> 3
+ * Sensor Leitura -> 0 
+ * Sensor Power   -> 8
+ */
+
 const int DEBUG = 1;
 Mail *mail;
+
+void remove_flag(){
+  mail->set_flag(false);
+}
 
 void setup() {
   // put your setup code here, to run once:
@@ -17,6 +28,8 @@ void setup() {
 
   setup_sleep();
 
+  attachInterrupt(digitalPinToInterrupt(3), remove_flag, CHANGE);
+
   if(DEBUG){
     Serial.println("Ready");
   }
@@ -26,19 +39,34 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  // Liga o ADC (gasta energia)
-  ADCSRA |= (1 << 7);
+  // Verifica se no ciclo anterior ahvia corrieo novo
+  if(!mail->get_flag()){
+
+    // Se NÃO havia correio novo, vamos ver se existe agora
+    
+    // Liga o ADC (gasta energia)
+    ADCSRA |= (1 << 7);
+    
+    mail->check_mail();
   
-  mail->check_mail();
+    if(DEBUG){
+      delay(100);
+    }
+  
+    //Desliga o ADC
+    ADCSRA &= ~(1 << 7);
+  
+    sleeps(4);
+    
+  } else {
 
-  if(DEBUG){
-    delay(100);
+    // Se havia correio novo e não o tiraram, notifica
+    
+    mail->Notify();
+
+    sleeps(1);
+    
   }
-
-  //Desliga o ADC
-  ADCSRA &= ~(1 << 7);
-
-  sleeps(1);
  
 }
 

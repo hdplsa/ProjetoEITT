@@ -63,6 +63,9 @@ void Mail::initial_calibration(){
 
 void Mail::check_mail(){
 
+  // Caso se saiba que existe já novo correio, simplesmente retorna-se
+  if(new_mail == true) return;
+
   double medida; // Medida de distância.
 
   // ofset de niveis do ADC que fazem trigger da notificação
@@ -77,10 +80,23 @@ void Mail::check_mail(){
   
   // Notifica caso a nossa tensão recebida seja maior que a de calibração mais um offset 
   if(medida > this->calibVoltage + 5/1024 * offset){
-    Not->Notify();
+    new_mail = true;
   }
   
 }
+
+bool Mail::get_flag(){
+  return new_mail;
+}
+
+void Mail::set_flag(bool flag){
+  new_mail = flag;
+}
+
+void Mail::Notify(){
+  Not->Notify();
+}
+
 
 Mail::~Mail(){
   delete ifled;

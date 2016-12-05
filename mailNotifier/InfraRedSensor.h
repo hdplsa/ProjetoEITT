@@ -12,6 +12,8 @@ class InfraRedSensor{
   double usensor[3];
   //Power do Sensor
   int sensorPowerPin[3];
+  // Saber se está on
+  bool sensorON[3];
   //Valor minimo de referência no sensor para haver carta
   double REF;
   
