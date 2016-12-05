@@ -19,6 +19,13 @@ class Notifier{
   LEDNotifier *piscaLED;
   GSMNotifier *gsm;
 
+  /* Este inteiro diz se já notificamos o utilizador
+   * serve especialmente para o caso do GSM em que 
+   * não queremos notificar mais do que uma vez caso
+   * haja correio
+   */
+  bool notified;
+
 public:
   Notifier(NotificationType type);
   int testMailBox();

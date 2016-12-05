@@ -3,29 +3,43 @@
 InfraRedSensor::InfraRedSensor(int NSensor){
   int n;
   this->NSensor = NSensor;
+  
   //Inicializa pinos dos sensores
   this->sensorPin[0] = 0;
   this->sensorPin[1] = 1;
   this->sensorPin[2] = 2;
+  
   //Inicializa pinos de alimentação dos sensores
   this->sensorPowerPin[0] = 8;
+  
   //Modo output nos pinos de alimentação dos LEDs
   for(n=0; n<this->NSensor; n++){
     pinMode(this->sensorPowerPin[n], OUTPUT);
   }
+
+  // Coloca a variável que diz que os sensores estão OFF
+  this->sensorON[0] = false;
+  this->sensorON[1] = false;
+  this->sensorON[2] = false;
 }
 
 void InfraRedSensor::turnAllSensorON(){
   int n;
   for(n=0;n<this->NSensor;n++){
+    // Coloca o pino a HIGH
     digitalWrite(this->sensorPowerPin[n], HIGH);
+    // Coloca a variável que diz que está HIGH a true
+    this->sensorON[n] = true;
   }
 }
 
 void InfraRedSensor::turnAllSensorOFF(){
   int n;
   for(n=0;n<this->NSensor;n++){
+    // Coloca o pino a low
     digitalWrite(this->sensorPowerPin[n], LOW);
+    // Diz qe o sensor está a low
+    this->sensorON[n] = false;
   }
 }
 
