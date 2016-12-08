@@ -76,10 +76,14 @@ void Mail::check_mail(){
   if(DEBUG){
     Serial.print("u = ");
     Serial.println(medida,4);
+
+    Serial.print("offset ");
+    Serial.println(this->calibVoltage + 5/1024 * offset);
   }
   
   // Notifica caso a nossa tensão recebida seja maior que a de calibração mais um offset 
   if(medida > this->calibVoltage + 5/1024 * offset){
+    Serial.println("Detetei correio");
     new_mail = true;
   }
   

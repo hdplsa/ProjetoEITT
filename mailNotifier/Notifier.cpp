@@ -1,6 +1,6 @@
 #include "Notifier.h"
 
-const int LEDPin = 2;
+const int LEDPin = 4;
 
 Notifier::Notifier(NotificationType type){
   this->type = type;

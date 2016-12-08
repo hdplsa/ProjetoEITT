@@ -5,17 +5,21 @@
 #include "Notifier.h"
 #include "Mail.h"
 
+#define BUTTONPIN 2
+
 /* PINs dos LED e Sensor
- * LED            -> 2
+ * LED            -> 4
  * botão          -> 3
  * Sensor Leitura -> 0 
  * Sensor Power   -> 8
+ * LED IV         -> 12
  */
 
 const int DEBUG = 1;
 Mail *mail;
 
 void remove_flag(){
+  Serial.println("Cheguei aqui");
   mail->set_flag(false);
 }
 
@@ -28,7 +32,8 @@ void setup() {
 
   setup_sleep();
 
-  attachInterrupt(digitalPinToInterrupt(3), remove_flag, CHANGE);
+  pinMode(BUTTONPIN,INPUT);
+  attachInterrupt(digitalPinToInterrupt(BUTTONPIN), remove_flag, RISING);
 
   if(DEBUG){
     Serial.println("Ready");
@@ -61,6 +66,8 @@ void loop() {
   } else {
 
     // Se havia correio novo e não o tiraram, notifica
+
+    Serial.println("Notify");
     
     mail->Notify();
 
