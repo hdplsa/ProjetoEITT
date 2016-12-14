@@ -42,12 +42,12 @@ double Mail::check_distance(){
 
 void Mail::initial_calibration(){
 
-  const int N = 10; // Quantas medições se fazem por calibração
+  const double N = 10; // Quantas medições se fazem por calibração
   double cumsum = 0; // Variavel para guardar a soma das medições.
 
   // Obtem N medidas
-  for(int i = 1; i < N; i++){
-    cumsum = this->check_distance();
+  for(int i = 1; i < N+1; i++){
+    cumsum += this->check_distance();
   }
 
   // Faz a média das medidas
@@ -78,11 +78,11 @@ void Mail::check_mail(){
     Serial.println(medida,4);
 
     Serial.print("offset ");
-    Serial.println(this->calibVoltage + 5/1024 * offset);
+    Serial.println(this->calibVoltage + 10/1024 * offset, 4);
   }
   
   // Notifica caso a nossa tensão recebida seja maior que a de calibração mais um offset 
-  if(medida > this->calibVoltage + 5/1024 * offset){
+  if(medida > this->calibVoltage + 10/1024 * offset){
     Serial.println("Detetei correio");
     new_mail = true;
   }

@@ -35,6 +35,8 @@ void setup() {
   pinMode(BUTTONPIN,INPUT);
   attachInterrupt(digitalPinToInterrupt(BUTTONPIN), remove_flag, RISING);
 
+  delay(5000);
+
   if(DEBUG){
     Serial.println("Ready");
   }
@@ -61,7 +63,7 @@ void loop() {
     //Desliga o ADC
     ADCSRA &= ~(1 << 7);
   
-    sleeps(4);
+    sleeps(1);
     
   } else {
 
